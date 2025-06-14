@@ -1,12 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "./Navbar";
+
 
 
 
 
 function CheckOut(){
 
+  const [products, setProduct] = useState([])
 const[checkout, setCheckout] = useState({
   fullname: "",
   email: "",
@@ -40,38 +43,61 @@ function procedCheckOut(e){
   setCheckout("")
 }
 
+useEffect(()=>{
+  const allCartProducts = (JSON.parse(localStorage.getItem("cart")) || [])
+  setProduct(allCartProducts)
+
+}, [])
+console.log(products)
+const totalAmount = products.reduce((sum, item)=>sum + (item.product_price * item.quantity), 0)
+
+
+
+
     return(
         <>
+        <Navbar/>
         {
           
         
         <form onSubmit={procedCheckOut}>
+          <a className="backToCart" href="/cart">return to cart</a>
           <h2 className="checkoutTitle">Enter your informations to Chechout.</h2>
-
-<div className="productsContainer">
-            <div className="shoppingCart">
-  {/* <span className="price" style={{ color: "black" }}> */}
 <div>
-<i className="fa fa-shopping-cart"></i>
-    <h3 className="ProductsInTheCart">Products</h3>
-    <h3 className="ProductsInTheCart prices">Prices</h3>
-   
+
+<table >
+   <thead>
+   <tr>
+      <th>Products</th>
+      <th>Prices</th>
+    </tr>
+   </thead>
+    {
+    products.map((product, index)=>(
+    <tbody key={index}>
+    <tr>
+      <td >{product.product_name}</td> 
+       <td>${product.product_price}</td>
+      
+       
+     </tr>
+    </tbody>
+    
+    ))
+  }
+
+  </table>
+  <table className="tfoot">
+    <tfoot >
+    <tr>
+      <th>Cart total</th>
+      <td>${totalAmount}</td>
+    </tr>
+
+    </tfoot>
+  </table>
+
 </div>
-  {/* </span> */}
-  <h4></h4>
-  <p><a href="#">Product 1</a> <span className="price">$15</span></p>
-  <p><a href="#">Product 2</a> <span className="price">$5</span></p>
-  <p><a href="#">Product 3</a> <span className="price">$8</span></p>
-  <p><a href="#">Product 4</a> <span className="price">$2</span></p>
-  
-
-
-  <hr />
-  <p>Total <b className="TotalPrice">$30</b></p>
-  {/* <p>Total <span className="price" style={{ color: "black" }}><b>$30</b></span></p> */}
-</div>
-
-          </div>
           <div className="billingAndPayment">
             <div className="personalInfo">
             <h3  className="h3Header">Billing Address</h3>

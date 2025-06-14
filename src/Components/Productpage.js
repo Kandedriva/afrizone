@@ -7,6 +7,9 @@ import Navbar from "./Navbar";
 function Productpage(){
 
     const [products, setProducts] = useState([])
+    const [search, setSearch] = useState("");
+    console.log(search)
+    
 
     useEffect(() => {
        axios.get("http://localhost:5001/productList")
@@ -17,6 +20,20 @@ function Productpage(){
         console.log(error)
        })
     }, []);
+
+    function proof(){
+      console.log("I'm working, don't you worry...!")
+    }
+
+    // function searchResult(e){
+    //   const name = e.target.name;
+    //   let value = e.target.value;
+    // //   
+    //   setSearch({
+    //     ...search,
+    //     [name]: value
+    //   });
+    // }
 
     // const addToCart = (productId, quantity = 1)=>{
     //     axios.post("http://localhost:5001/cart", {
@@ -38,11 +55,8 @@ function Productpage(){
     //     alert("Product added to cart!");
     //     console.log(cart)
     //   };
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const addToCart = (product) => {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        // let amount;
-      
-        // Check if product already exists in the cart
         let existingProduct = cart.find(item => item.product_id === product.product_id);
       
         if (existingProduct) {
@@ -60,8 +74,18 @@ function Productpage(){
 
     return(
         <>
-        <Navbar/>
+        <Navbar cart = { cart.length}/>
         <h2>All Products</h2>
+
+        <div className="quantity">
+  <input type="text"
+   className="search-input" 
+   placeholder="Search products by names..."
+   onChange={(e)=>setSearch(e.target.value)}
+   name = "result"
+></input>
+  <button className="search-product-button" aria-label="Increase" type="submit" onClick={proof}><i className="fa-solid fa-magnifying-glass"></i></button>
+</div>
     <div className="productPAge-Title">
     {/* {getUser?.username && <h1 className="user-Navbar">Welcome to Afrizone, {getUser.username}</h1>}   */}
     {/* <button onClick={goToCart} className="cartAndLogout">Cart</button>
@@ -70,17 +94,19 @@ function Productpage(){
     </div>
    
     {
-        products.map(product=>(
-       <div className="Product-container" key={product.product_id} >
+        products.filter((product)=>{
+      return search.toLowerCase() === "" ? product : product.product_name.toLowerCase().includes(search.toLowerCase())
+          }).map(product=>(
+       <div className="product-container" key={product.product_id} >
         <div>
         <div className="imageContainer1">
         <img alt={product.product_name} src={product.product_image} className="product-image"></img>
         </div>
          <h3><a href={product.product_description}>{product.product_name}</a></h3>
-        <div className="productDescription">     
-        <b >Details:</b>
-        {product.product_description.slice(0, 20)}...<a href={product.product_description}>read more</a>
-        </div>
+        {/* <div className="productDescription">     
+        <b >Details:</b><br></br>
+        {product.product_description.slice(0, 50)}...<a href={product.product_description}>read more</a>
+        </div> */}
         <div>
         <p className="single-price"><b>Price : ${product.product_price}</b></p>
         <button className="cart-button" onClick={() => addToCart(product)}>+ Add To Cart</button>
@@ -97,3 +123,7 @@ function Productpage(){
 }
 
 export default Productpage
+
+
+
+

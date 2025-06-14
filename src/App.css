@@ -1,19 +1,33 @@
-/*  */
-/* body{
-  background-color: ivory;
-} */
-/* input {
-  padding-right:10% ;
-  width: 100%;
-  border: 2px solid;
-  font-size: 15px;
-} */
+
+table{
+  font-size: 20px;
+  width: 50%;
+  background-color:  #f2f2f2;
+  margin-left: 25%;
+  
+
+}
+th{
+  background-color:  rgb(124, 124, 214) ;
+}
+td{
+  border: 0.2px solid;
+  padding-left: 10px;
+  
+}
+
 * {box-sizing: border-box}
 b{
   color: red;
 }
+/* input[type=text],  */
+.tfoot{
+  margin-bottom: 20px;
+  border-right: none;
+  margin-right: 0px;
+}
 
-input[type=text], input[type=password], input[type=email] {
+input[type=password], input[type=email] {
   font-size: 20px;
   width: 100%;
   padding: 20px;
@@ -34,6 +48,9 @@ input[type=text]:focus, input[type=password]:focus {
 
 label {
   font-size: 20px;
+}
+h3{
+  margin-left: 10px;
 }
 
 .registration-caption {
@@ -108,19 +125,20 @@ label {
   font-size: 23px;
 }
 
-.Product-container {
+.product-container {
   border-radius: 10px;
+  /* position:static; */
   /* box-shadow: 6px 5px gray; */
   display: inline-block;
-  width: 190px;
-  height: 350px;
+  width:fit-content;
+  height:auto;
   border-left:0.5px solid;
   border-right: 0.5px solid;
-  margin:0.5%;
-  padding: 0.1px;
+  margin: 2% 1%;
+  /* padding: 2px; */
 
 }
-.Product-container:hover{
+.product-container:hover{
  border: 2px solid  rgb(124, 124, 214);
 
 }
@@ -137,8 +155,7 @@ label {
 
 .cart-button {
   background-color: rgb(124, 124, 214);
-  border: 1ps solid;
-  border-radius: 200px;
+  border: 1px solid;
   color: white;
   padding: 8px;
   border: none;
@@ -177,6 +194,7 @@ label {
 .single-price {
   background-color: rgb(54, 219, 234);
   /* color: white; */
+  width: 170px;
   padding: 5px;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
@@ -212,6 +230,7 @@ color:  white;
   color: aqua;
 }
 .firstList-title{
+  cursor: pointer;
   font-size: 50px;
   font-family: fantasy;
   color: white;
@@ -245,15 +264,9 @@ color:  white;
   margin-left: 85%;
 }
 .product-image{
-  border-radius: 4px;
-  box-shadow: 8px 7px gray;
-  text-align: center;
-  border: 1px solid #ddd;
+  margin-left: 50px;
   height: 150px;
-  padding: 5px;
   width: 150px;
-
-
 }
 .product-form{
   /* border: 2px solid red; */
@@ -398,7 +411,7 @@ label {
   padding: 5px 25px;
   border-left: 2px solid;
   border-bottom: 1px;
-  margin: 25px;
+  margin: 10px;
 }
 .addBnt{
   margin: 20px;
@@ -407,7 +420,7 @@ label {
   padding: 8px 25px;
   color: red;
   font-size: 20px;
-  margin-left: 50%;
+  margin-left: 12%;
 }
 .imageContainer{
   padding-right: 25px;
@@ -417,5 +430,75 @@ label {
 }
 .productDescription{
   /* border: 1px solid red; */
+  margin-left: 6px ;
   width: 200px;
+}
+.ProductCheckoutName{
+  margin-right: 300px;
+}
+.ProductCheckoutPrice{
+  margin-bottom: 5px;
+}
+.search-input{
+  border-right: none;
+  font-size: 20px;
+  margin-left: 5px;
+  width: 90%;
+  height: 40px;
+}
+.search-product-button{
+  background-color: rgb(124, 124, 214);
+  border: none;
+  cursor:pointer;
+  font-size: 20px;
+  height: 40px;
+  width: 80px;
+}
+.ProcedToCheckOut{
+  background-color: yellow;
+  border: 1px solid rgba(227, 193, 37, 0.796);
+  cursor:pointer;
+  width:100%;
+  padding: 15px 5px 8px 2px;
+  margin-bottom: 20px;
+ font-size: 22px;
+}
+.ProcedToCheckOut:hover{
+  background-color: rgb(240, 240, 7);
+
+
+}
+.backToCart{
+  margin-left: 10px;
+  font-size: 20px;
+}
+.cartImage{
+  margin-right: 20px;
+  border: 1px solid white;
+  width: 10%;
+  float: left;
+}
+.cartItemPrice{
+  background-color: rgb(54, 219, 234);
+  color: red;
+  margin-left: 160px;
+  margin-top: 0;
+  width: 8%;
+  /* height: 40px; */
+  padding: 2px;
+}
+.quantityInput{
+  width: 75px;
+  margin-bottom: 0;
+}
+.cartQuantityTitle{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 8px;
+  display: inline-block;
+}
+.updateQuantityButton{
+  margin-top: 0;
+  margin-bottom: 8px;
+  margin-left: 90px;
 }

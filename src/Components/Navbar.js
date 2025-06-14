@@ -7,9 +7,9 @@ import { useEffect } from "react";
 
 
 
-function Navbar(){
+function Navbar({cart}){
 
-    const [numberOfItem, setNumberOfItem]= useState([])
+   //  const [numberOfItem, setNumberOfItem]= useState([])
 
     const navigateTo = useNavigate();
      function navigateToLogin(){
@@ -23,18 +23,21 @@ function Navbar(){
      function goToCart(){
         navigateTo("/cart")
      }
+     function productPage(){
+      navigateTo("/")
+     }
 
-  useEffect(() => {
-    setNumberOfItem(JSON.parse(localStorage.getItem("cart")) || []);
-  }, []);
+//   useEffect(() => {
+//     setNumberOfItem(JSON.parse(localStorage.getItem("cart")) || []);
+//   }, []);
 
 
 
     return(
         <>
         <div className="navbar">
-        <h1 className="firstList-title">Welcome to Afrizone</h1>
-       <a className="shoppingCartIcon" href="/cart" onClick={goToCart}><i className="fa-solid fa-cart-shopping"></i>{numberOfItem.length}</a>
+        <h1 onClick={productPage} className="firstList-title">Welcome to Afrizone</h1>
+       <a className="shoppingCartIcon" href="/cart" onClick={goToCart}><i className="fa-solid fa-cart-shopping">{cart}</i></a>
             <Link  to="/"></Link>
             <div className="navigationLink">
             <a href="/register"><i className="fa-solid fa-user"></i></a><Link className="linkTo" to="/registration" onClick={navigateToRegister}> Register</Link>
@@ -48,6 +51,12 @@ function Navbar(){
             </div>
             
         </div>
+{/* 
+        <div className="quantity">
+  <button className="minus" aria-label="Decrease">&minus;</button>
+  <input type="number" className="input-box" value="1" min="1" max="10"></input>
+  <button className="plus" aria-label="Increase">&plus;</button>
+</div> */}
         
         </>
     )

@@ -1,55 +1,18 @@
-// import axios from "axios";
-// import react from "react";
-// import { useState } from "react";
-// import { useEffect } from "react";
-// import Navbar from "./Navbar";
-// import { useNavigate } from "react-router-dom";
-
-
-// function Carts(){
-
-//     const [cartProduct, setCartProduct] = useState([])
-
-//     const navigate = useNavigate()
-
-//     useEffect(() => {
-//         axios.get("http://localhost:5001/cart_items", { withCredentials: true })
-//         .then(res=>{
-//             console.log(res.data.cart)
-//         })
-//         .catch(error=>{
-//             console.error("There was an error retreiving the cart.", error)
-//         })
-//     }, []);
-
-//     function goToProduct(){
-//         navigate("/")
-//     }
-
-//     return(
-//         <>
-//         <Navbar/>
-//         <div  className="backButton">
-//         <a className="fontstyle" href="#" onClick={goToProduct} ><i class="fa-solid fa-backward-fast"></i> Go to products</a>
-
-
-//         </div>
-//         <h1>welcome to your cart..! You have 0 items in your cart..</h1>
-//         </>
-//     )
-// }
-
-// export default Carts;
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({addToCart}) => {
+  
   const [cart, setCart] = useState([]);
+  const [quantityupdate, setQuantityUpdate] = useState(cart)
   const navigate = useNavigate()
+
   function goToProduct(){
         navigate("/")
        }
+
+       console.log(cart)
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
@@ -62,6 +25,10 @@ const Cart = () => {
   };
 
   const totalAmount = cart.reduce((sum, item)=>sum + (item.product_price * item.quantity), 0)
+  function goToCheckOut(){
+    navigate("/checkout")
+}
+console.log(cart)
 
   return (
     <>
@@ -72,20 +39,24 @@ const Cart = () => {
       {cart.length === 0 ? <p>Cart is empty</p> : (
         cart.map((item, index) => (
           <div className="cartItemContainer" key={index}>
-            <img src={item.product_image} alt={item.name} width="50" />
-            {/* <p>{item.product_description}</p> */}
+            <img className="cartImage" src={item.product_image} alt={item.name} width="50"/>
             <h3>{item.product_name}</h3>
-            <p>Quantity:  {item.quantity}</p>
-            <p>Amount:${item.product_price * item.quantity}</p>
+            <p>{item.product_description}</p>
+            <h4 className="cartQuantityTitle">Quantity:</h4>
+            <span>{item.quantity}</span>
+            <button  type="submet" className="updateQuantityButton" >update</button>
+      
+            <h4 className="cartItemPrice">Price:${item.product_price * item.quantity}</h4>
             <button className="remove-button" onClick={() => removeItem(index)}><i className="fa-solid fa-trash"></i></button>
           </div>
         ))
       )}
-      <a href="/checkout">Proceed to Checkout</a>
+      <button onClick={goToCheckOut} className="ProcedToCheckOut">Proceed to Checkout</button>
     </div>
     
     </>
   );
+  // value={item.quantity}
 };
 
 export default Cart;
