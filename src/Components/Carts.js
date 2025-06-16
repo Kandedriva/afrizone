@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
-const Cart = ({addToCart}) => {
+const Cart = () => {
   
   const [cart, setCart] = useState([]);
-  const [quantityupdate, setQuantityUpdate] = useState(cart)
+  // const [quantityupdate, setQuantityUpdate] = useState(cart)
   const navigate = useNavigate()
 
   function goToProduct(){

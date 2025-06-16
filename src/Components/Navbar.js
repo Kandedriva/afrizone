@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 
 
@@ -51,13 +51,6 @@ function Navbar({cart}){
             </div>
             
         </div>
-{/* 
-        <div className="quantity">
-  <button className="minus" aria-label="Decrease">&minus;</button>
-  <input type="number" className="input-box" value="1" min="1" max="10"></input>
-  <button className="plus" aria-label="Increase">&plus;</button>
-</div> */}
-        
         </>
     )
 }
