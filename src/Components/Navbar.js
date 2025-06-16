@@ -20,9 +20,9 @@ function Navbar({cart}){
         navigateTo("/register")
      }
 
-     function goToCart(){
-        navigateTo("/cart")
-     }
+   //   function goToCart(){
+   //      navigateTo("/cart")
+   //   }
      function productPage(){
       navigateTo("/")
      }
@@ -37,7 +37,7 @@ function Navbar({cart}){
         <>
         <div className="navbar">
         <h1 onClick={productPage} className="firstList-title">Welcome to Afrizone</h1>
-       <a className="shoppingCartIcon" href="/cart" onClick={goToCart}><i className="fa-solid fa-cart-shopping">{cart}</i></a>
+       <a className="shoppingCartIcon" href="/cart"><i className="fa-solid fa-cart-shopping">{cart}</i></a>
             <Link  to="/"></Link>
             <div className="navigationLink">
             <a href="/register"><i className="fa-solid fa-user"></i></a><Link className="linkTo" to="/registration" onClick={navigateToRegister}> Register</Link>

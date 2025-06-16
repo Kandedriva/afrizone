@@ -6,13 +6,13 @@ function Login(){
 
     const navigateTo = useNavigate();
 
-    function navigateToProduct(){
-        navigateTo("/")
-    }
+    // function navigateToProduct(){
+    //     navigateTo("/")
+    // }
 
-    function goToRegister(){
-        navigateTo("/registration")
-    }
+    // function goToRegister(){
+    //     navigateTo("/registration")
+    // }
 
 
     return(
@@ -22,7 +22,7 @@ function Login(){
     <h3>Please Log in to start shopping.</h3>
     </div>
     <div className="backButton">
-    <a className="fontstyle" href="#" onClick={navigateToProduct} ><i class="fa-solid fa-backward-fast"></i> Go to products</a>
+    <a className="fontstyle" href="/registration"><i class="fa-solid fa-backward-fast"></i> Go to products</a>
 
     </div>
 
@@ -51,7 +51,7 @@ function Login(){
                 <div>
                     <button className="registration-button">Login</button>
                     <div className="signin">
-                        <p>You don't have an account? <a onClick={goToRegister} href="#">Register</a> </p>
+                        <p>You don't have an account? <a href="/registration">Register</a> </p>
                     
                         </div>
 

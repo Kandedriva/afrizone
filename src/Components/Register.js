@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 function Register(){
 
-    const navigateTo = useNavigate()
+    // const navigateTo = useNavigate()
 
-    function goToProduct(){
-        navigateTo("/")
-    }
+    // function goToProduct(){
+    //     navigateTo("/")
+    // }
 
 
     return(
@@ -18,7 +18,7 @@ function Register(){
         </div>
 
         <div  className="backButton">
-        <a className="fontstyle" href="/" onClick={goToProduct} ><i class="fa-solid fa-backward-fast"></i> Go to products</a>
+        <a className="fontstyle" href="/" ><i class="fa-solid fa-backward-fast"></i> Go to products</a>
 
 
         </div>
