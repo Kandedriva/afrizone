@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import pg from "pg";
+import pkg from 'pg';
 import env from "dotenv";
 import cors from "cors";
 import session from "express-session";
@@ -10,13 +10,20 @@ import { fileURLToPath } from 'url';
 
 env.config();
 const app = express();
-const db = new pg.Client({
-    user: process.env.DATABASE_USER,
-    database: process.env.DATABASE_NAME,
-    host: process.env.DATABASE_HOST,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT
-});
+const { Client } = pkg;
+// const db = new pg.Client({
+//     user: process.env.DATABASE_USER,
+//     database: process.env.DATABASE_NAME,
+//     host: process.env.DATABASE_HOST,
+//     password: process.env.DATABASE_PASSWORD,
+//     port: process.env.DATABASE_PORT
+// });
+const db = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false // required for Supabase on Render
+    }
+  });
 
 db.connect();
 const pgSession = pgSessionPkg(session);
