@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 function Login(){
 
-    const navigateTo = useNavigate();
+    // const navigateTo = useNavigate();
 
     // function navigateToProduct(){
     //     navigateTo("/")
