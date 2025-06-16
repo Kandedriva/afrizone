@@ -43,7 +43,8 @@ console.log(cart)
             <h3>{item.product_name}</h3>
             <p>{item.product_description}</p>
             <h4 className="cartQuantityTitle">Quantity:</h4>
-            <span>{item.quantity}</span>
+           
+            <input type="number" className="quantityInput" value={item.quantity}></input>
             <button  type="submet" className="updateQuantityButton" >update</button>
       
             <h4 className="cartItemPrice">Price:${item.product_price * item.quantity}</h4>
