@@ -12,8 +12,6 @@ const Cart = () => {
   //       navigate("/")
   //      }
 
-       console.log(cart)
-
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
   }, []);
@@ -34,7 +32,7 @@ console.log(cart)
     <>
     <Navbar/>
     <div>
-    <a className="fontstyle" href="/checkout"  ><i className="fa-solid fa-backward-fast"></i> Go to products</a>
+    <a className="fontstyle" href="/" ><i className="fa-solid fa-backward-fast"></i> Go to products</a>
       <h2>You have <b>{cart.length}</b> items in your cart, your Cart value is $<b>{totalAmount}</b></h2>
       {cart.length === 0 ? <p>Cart is empty</p> : (
         cart.map((item, index) => (

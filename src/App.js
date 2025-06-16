@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Productpage from './Components/Productpage';
 import Carts from './Components/Carts';
 import Register from './Components/Register';
@@ -8,16 +8,13 @@ import CheckOut from './Components/Checkout';
 
 function App() {
   return (
-  <>
     <Routes>
-  <Route path="/" element={<Productpage/>} />
-  <Route path="/registration" element={<Register />} />
-  <Route path="/login" element={<Login />} />
-  <Route path="/cart" element={<Carts/>} />
-  <Route path="/checkout" element={<CheckOut/>}/>
-
+      <Route path="/" element={<Productpage />} />
+      <Route path="/registration" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/cart" element={<Carts />} />
+      <Route path="/checkout" element={<CheckOut />} />
     </Routes>
-  </>
   );
 }
 

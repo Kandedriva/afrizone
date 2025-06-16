@@ -1,110 +1,3 @@
-// import express  from "express";
-// import bodyParser from "body-parser";
-// import pg from "pg";
-// import env from "dotenv";
-// import cors from "cors"
-// import session from "express-session";
-// import pgSessionPkg from "connect-pg-simple";
-
-
-// env.config();
-// const app = express();
-// const db = new pg.Client({
-//     user: process.env.DATABASE_USER,
-//     database: process.env.DATABASE_NAME,
-//     host: process.env.DATABASE_HOST,
-//     password: process.env.DATABASE_PASSWORD,
-//     port: process.env.DATABASE_PORT
-// });
-
-// db.connect();
-// const pgSession = pgSessionPkg(session);
-// const router = express.Router();
-// app.use(session({
-//     store: new pgSession({
-//         pool: db,
-//         tableName: "sessions",
-//         createTableIfMissing: false,
-//     }),
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true,
-//     cookies: {
-//         maxAge: 1000 * 60 * 60 * 24 * 365,
-//         httpOnly: true,
-//     },
-// }))
-
-// app.use(bodyParser.json());
-
-// app.use(cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-// }))
-// const port = 5001;
-
-
-
-
-
-
-
-// app.get("/productList", async(req, res)=>{
-//     try {
-//         const products = await db.query("SELECT * FROM product")
-//         res.json(products.rows)
-//     } catch (error) {
-//         console.log(error)
-//     }
-
-// });
-
-// app.post("/cart", async(req, res)=>{
-//     const {product_id, quantity} = req.body;
-//     const userId = req.user?.id;
-//     let cartId = req.session.cart_id;
-
-//     try {
-
-// //////////////////CREATE A NEW CART IF NONE EXIST/////////////////
-//         if(!cartId){
-//             const { rows } = await db.query("INSERT INTO carts (user_id, created_at) VALUES ($1, NOW()) RETURNING id", 
-//             [userId || null]);
-//             cartId = rows[0].id;
-//             req.session.cart_id = cartId
-//             console.log(req.session)
-//         }
-// //////////////////CHECK IF THE PRODUCT IS ALREADY IN THE CART///////////////////////////
-//         const {rows: existingItems} = await db.query(
-//             "SELECT id, quantity FROM cart_items WHERE cart_id = $1 AND product_id = $2",
-//          [cartId, product_id]
-//          );
-//          if(existingItems.length>0){
-//          //Product exist, Update quantity///////
-//          await db.query("UPDATE cart_items SET quantity = quantity + $1 WHERE id = $2", [quantity, existingItems[0].id]
-//          );
-//          }else{
-//             await db.query("INSERT INTO cart_items (cart_id, product_id, quantity) VALUES ($1, $2, $3)", 
-//             [cartId, product_id, quantity]
-//             );
-//          }
-//          res.status(200).json({message: "Product successfully added to cart", cart_id: cartId});
-
-//     } catch (error) {
-//         console.error("Error adding product to cart:", error)
-//         res.status(500).json({error: "Failed to add product..!"})
-//     }
-
-// })
-
-
-
-
-
-
-// app.listen(port, ()=>{
-//     console.log(`Server is up and running on port ${port}`)
-// })
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
@@ -152,7 +45,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3001",
     credentials: true,
 }));
 
