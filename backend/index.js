@@ -20,9 +20,11 @@ const { Client } = pkg;
 // });
 const db = new Client({
     connectionString: process.env.DATABASE_URL,
+    
     ssl: {
       rejectUnauthorized: false // required for Supabase on Render
-    }
+    },
+    family: 4
   });
 
 db.connect();
@@ -52,7 +54,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 app.use(cors({
-    origin: "http://localhost:3001",
+    origin: "https://cerulean-pika-4b4fd6.netlify.app/",
     credentials: true,
 }));
 
