@@ -58,7 +58,7 @@ app.use(cors({
     credentials: true,
 }));
 
-const port = 5001;
+const PORT = process.env.PORT || 5000;
 
 // Fetch all products
 app.get("/productList", async (req, res) => {
@@ -175,6 +175,6 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is up and running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is up and running on port ${PORT}`);
 });
