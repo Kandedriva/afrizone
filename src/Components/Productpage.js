@@ -12,7 +12,7 @@ function Productpage(){
     
 
     useEffect(() => {
-       axios.get("http://localhost:5001/productList")
+       axios.get("https://afrizone-1.onrender.com/productList")
        .then(res=>{
         setProducts(res.data)
         })
