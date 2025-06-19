@@ -3,14 +3,58 @@ import bodyParser from "body-parser";
 import pkg from 'pg';
 import env from "dotenv";
 import cors from "cors";
-import session from "express-session";
-import pgSessionPkg from "connect-pg-simple";
+// import session from "express-session";
+// import pgSessionPkg from "connect-pg-simple";
 import  path  from "path";
 import { fileURLToPath } from 'url';
 
+const { Pool } = pkg;
+
 env.config();
 const app = express();
-const { Client } = pkg;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, '../public')));
+
+
+app.use(cors({
+    origin: "https://cerulean-pika-4b4fd6.netlify.app/",
+    credentials: true,
+}));
+
+const PORT = process.env.PORT || 5001;
+
+const {PGHOST, PGDATABASE, PGUSER, PGPASSWORD} = process.env;
+
+const pool = new Pool({
+    host: PGHOST,
+    database: PGDATABASE,
+    user: PGUSER,
+    password: PGPASSWORD,
+    port: 5432,
+    ssl:{
+        rejectUnauthorized: false
+    }
+});
+// const router = express.Router();
+
+app.get("/productList", async(req, res)=>{
+    const client = await pool.connect();
+
+    try {
+        const products = await client.query("SELECT * FROM product");
+        res.json(products.rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch products" });
+    }
+});
+
+
+
+// const { Client } = pkg;
 // const db = new pg.Client({
 //     user: process.env.DATABASE_USER,
 //     database: process.env.DATABASE_NAME,
@@ -18,18 +62,18 @@ const { Client } = pkg;
 //     password: process.env.DATABASE_PASSWORD,
 //     port: process.env.DATABASE_PORT
 // });
-const db = new Client({
-    connectionString: process.env.DATABASE_URL,
+// const db = new Client({
+//     connectionString: process.env.DATABASE_URL,
     
-    ssl: {
-      rejectUnauthorized: false // required for Supabase on Render
-    },
-    family: 4
-  });
+//     ssl: {
+//       rejectUnauthorized: false // required for Supabase on Render
+//     },
+//     family: 4
+//   });
 
-db.connect();
+// db.connect();
 // const pgSession = pgSessionPkg(session);
-const router = express.Router();
+
 
 // app.use(session({
 //     store: new pgSession({
@@ -46,30 +90,18 @@ const router = express.Router();
 //     },
 // }));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '../public')));
 
-
-app.use(cors({
-    origin: "https://cerulean-pika-4b4fd6.netlify.app/",
-    credentials: true,
-}));
-
-const PORT = process.env.PORT || 5000;
 
 // Fetch all products
-app.get("/productList", async (req, res) => {
-    try {
-        const products = await db.query("SELECT * FROM product");
-        res.json(products.rows);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to fetch products" });
-    }
-});
+// app.get("/productList", async (req, res) => {
+//     try {
+//         const products = await db.query("SELECT * FROM product");
+//         res.json(products.rows);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: "Failed to fetch products" });
+//     }
+// });
 
 // // Add product to cart
 // app.post("/cart", async (req, res) => {
