@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 app.use(cors({
-    origin: "https://cerulean-pika-4b4fd6.netlify.app/",
+    origin: "https://cerulean-pika-4b4fd6.netlify.app",
     credentials: true,
 }));
 
