@@ -12,13 +12,13 @@ function Navbar({cart}){
    //  const [numberOfItem, setNumberOfItem]= useState([])
 
     const navigateTo = useNavigate();
-     function navigateToLogin(){
-        navigateTo("/login")
-     }
+    //  function navigateToLogin(){
+    //     navigateTo("/login")
+    //  }
 
-     function navigateToRegister(){
-        navigateTo("/register")
-     }
+    //  function navigateToRegister(){
+    //     navigateTo("/register")
+    //  }
 
    //   function goToCart(){
    //      navigateTo("/cart")
@@ -39,7 +39,7 @@ function Navbar({cart}){
         <h1 onClick={productPage} className="firstList-title">Welcome to Afrizone</h1>
        <a className="shoppingCartIcon" href="/cart"><i className="fa-solid fa-cart-shopping">{cart}</i></a>
             <Link  to="/"></Link>
-            <div className="navigationLink">
+            {/* <div className="navigationLink">
             <a href="/register"><i className="fa-solid fa-user"></i></a><Link className="linkTo" to="/registration" onClick={navigateToRegister}> Register</Link>
             </div>
             <div  className="navigationLink" >
@@ -48,7 +48,7 @@ function Navbar({cart}){
              to="/Login" onClick={navigateToLogin}>Login
              </Link>
              <a href="/Login"><i className="fa-solid fa-right-to-bracket"></i></a>
-            </div>
+            </div> */}
             
         </div>
         </>
