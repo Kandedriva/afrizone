@@ -2,8 +2,8 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Productpage from './Components/Productpage';
 import Carts from './Components/Carts';
-import Register from './Components/Register';
-import Login from './Components/Login';
+// import Register from './Components/Register';
+// import Login from './Components/Login';
 import CheckOut from './Components/Checkout';
 
 function App() {
