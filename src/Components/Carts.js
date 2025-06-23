@@ -42,8 +42,8 @@ console.log(cart)
             <p>{item.product_description}</p>
             <h4 className="cartQuantityTitle">Quantity:</h4>
            
-            <input type="number" className="quantityInput" value={item.quantity}></input>
-            <button  type="submet" className="updateQuantityButton" >update</button>
+            <span>{item.quantity}</span>
+            {/* <button  type="submet" className="updateQuantityButton" >update</button> */}
       
             <h4 className="cartItemPrice">Price:${item.product_price * item.quantity}</h4>
             <button className="remove-button" onClick={() => removeItem(index)}><i className="fa-solid fa-trash"></i></button>

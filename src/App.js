@@ -10,8 +10,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Productpage />} />
-      <Route path="/registration" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      {/* <Route path="/registration" element={<Register />} />
+      <Route path="/login" element={<Login />} /> */}
       <Route path="/cart" element={<Carts />} />
       <Route path="/checkout" element={<CheckOut />} />
     </Routes>
