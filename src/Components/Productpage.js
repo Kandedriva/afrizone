@@ -8,18 +8,18 @@ function Productpage(){
 
     const [products, setProducts] = useState([])
     const [search, setSearch] = useState("");
-    const [isloading, setIsloading] = useState(true)
+    // const [isloading, setIsloading] = useState(true)
     console.log(search)
     
 
     useEffect(() => {
        axios.get("https://afrizone-1.onrender.com/productList")
        .then(res=>{
-        setProducts(res.data),
-        setIsloading(false)
+        setProducts(res.data)
+        // setIsloading(false)
         })
        .catch(error=>{
-        setIsloading(false)
+        // setIsloading(false)
         console.log(error)
        })
     }, []);
