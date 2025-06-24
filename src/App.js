@@ -14,11 +14,12 @@ import EachProducts from './Components/EachProduct';
 
 function App() {
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios.get("https://afrizone-1.onrender.com/productList")
     .then(res=>{
      setProducts(res.data)
-     // setIsloading(false)
+     setLoading(false)
      })
     .catch(error=>{
      // setIsloading(false)
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Productpage products={products}/>} />
+      <Route path="/" element={<Productpage loading={loading} products={products}/>} />
       {/* <Route path="/registration" element={<Register />} />
       <Route path="/login" element={<Login />} /> */}
       <Route path="/cart" element={<Carts />} />
