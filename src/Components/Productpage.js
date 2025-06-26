@@ -5,6 +5,7 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import LoadingSreen from "./LoadingScreen";
+import { useNavigate } from "react-router-dom";
 
 function Productpage({products, loading}){
 
@@ -15,10 +16,11 @@ function Productpage({products, loading}){
     function proof(){
       console.log("I'm working, don't you worry...!")
     }
+    const navigate = useNavigate();
 
    
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const addToCart = (product) => {
+    const addToCart = async (product) => {
         let existingProduct = cart.find(item => item.id === product.id);
       
         if (existingProduct) {
@@ -28,7 +30,7 @@ function Productpage({products, loading}){
         }
       
         localStorage.setItem("cart", JSON.stringify(cart));
-        alert("Product added to cart!");
+        navigate("/")
       };
 
 

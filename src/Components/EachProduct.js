@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 
 const EachProducts = ({singleProduct})=>{
     const {id} = useParams();
+    console.log(useParams())
 
     const navigate = useNavigate()
     function checkout(){
@@ -12,7 +13,7 @@ const EachProducts = ({singleProduct})=>{
     }
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const addToCart = (product) => {
+    const addToCart = async (product) => {
         let existingProduct = cart.find(item => item.id === product.id);
       
         if (existingProduct) {
@@ -22,7 +23,7 @@ const EachProducts = ({singleProduct})=>{
         }
       
         localStorage.setItem("cart", JSON.stringify(cart));
-        alert("Product added to cart!");
+        navigate("/cart")
       };
    
 

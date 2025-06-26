@@ -127,10 +127,11 @@ h3{
 
 .productContainer {
   border-radius: 10px;
+ 
   /* position:static; */
   /* box-shadow: 6px 5px gray; */
   display: inline-block;
-  width:220px;
+  width:200px;
   height:320px;
   border-left:0.5px solid;
   border-right: 0.5px solid;
@@ -266,8 +267,8 @@ color:  white;
 }
 .productImage{
   margin-left: 50px;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
 }
 .product-form{
   /* border: 2px solid red; */
@@ -483,7 +484,7 @@ label {
   background-color: rgb(54, 219, 234);
   color: red;
   margin-left: 50px;
-  margin-top: 5px;
+  margin-top: 60px;
   width: 120px;
   /* height: 40px; */
   padding: 7px;
@@ -506,8 +507,8 @@ label {
 .productDetailImage{
   margin-right: 35px;
   float: left;
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
 }
 .detailsContainer{
   background-color: rgb(213, 213, 243);;
@@ -556,4 +557,7 @@ label {
 .detailsShopNow:hover{
   background-color: rgb(246, 246, 143);
   font-size: 15px;
+}
+.ProductDetailsDescription{
+  font-size: 20px;
 }
