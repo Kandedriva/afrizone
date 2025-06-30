@@ -236,11 +236,14 @@ color:  white;
   font-size: 50px;
   font-family: fantasy;
   color: white;
-  margin-right: 45%;
+  margin-right: 20%;
+  margin-top: 0px;
   display: inline-block;
   /* background-color: crimson; */
 }
-
+.toast{
+  margin: 0;
+}
 .welcomeText{
   padding: 5px;
   background-color: aqua;
@@ -457,7 +460,8 @@ label {
   width: 80px;
 }
 .ProcedToCheckOut{
-  background-color: yellow;
+  color: white;
+  background-color: #0e2ee4;
   border: 1px solid rgba(227, 193, 37, 0.796);
   cursor:pointer;
   width:100%;
@@ -467,6 +471,7 @@ label {
 }
 .ProcedToCheckOut:hover{
   background-color: rgb(240, 240, 7);
+  color: black;
 
 
 }
@@ -504,12 +509,86 @@ label {
   margin-bottom: 8px;
   margin-left: 90px;
 }
+
+
+.detailsButton {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background:  rgb(124, 124, 214);
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.detailsButton:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.detailsButton:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:  rgb(124, 124, 214);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
 .productDetailImage{
+  box-shadow: 5px 2px 5px 10px #888888;
+  border: 2px solid yellowgreen;
+  border-radius: 30px;
   margin-right: 35px;
+  margin-bottom: 10px;
   float: left;
   width: 350px;
   height: 350px;
 }
+
 .detailsContainer{
   background-color: rgb(213, 213, 243);;
   padding: 130px 25px;
@@ -518,18 +597,16 @@ label {
   margin: 10px;
 }
 .displayDetailsPrice{
-
+  margin-bottom: 150px;
+  width: 50%;
+  margin-left: 20%;
   color: red;
-  margin-top: 60px;
-  margin-left: 60px;
   font-size: 25px;
-
- 
-
 }
 .detailsButton{
-  margin-top: 10px;
-  margin-left: 10px;
+  border-radius: 30px;
+  /* margin-top: 120px; */
+  margin-left: 5px;
   padding: 15px;
   height: 50px;
   width: 200px;
@@ -538,11 +615,19 @@ label {
   font-size: 15px;
   cursor: pointer;
 }
+
+.imageContainer{
+  border: 2px solid red;
+  padding: 20px;
+}
+
+
 .ProductDetailName{
   margin-bottom: 5px;
   text-align: center;
 }
 .detailsAddTocart{
+  margin: 5px;
   background-color: rgb(124, 124, 214);
   color: white;
 }
@@ -560,4 +645,44 @@ label {
 }
 .ProductDetailsDescription{
   font-size: 20px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+/* STRIP INTEGRETION CSS */
+.stripPaymentBody {
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  'Helvetica Neue', 'Ubuntu', sans-serif;
+  height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  flex-direction: column;
+  width: 400px;
+  height: 112px;
+  border-radius: 6px;
+}
+p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.154px;
+  color: #242d60;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+#checkout {
+  width: 100vw;
 }

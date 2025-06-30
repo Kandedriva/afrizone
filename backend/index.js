@@ -7,6 +7,7 @@ import cors from "cors";
 // import pgSessionPkg from "connect-pg-simple";
 import  path  from "path";
 import { fileURLToPath } from 'url';
+import Stripe from "stripe";
 
 const { Pool } = pkg;
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../public')));
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
 // app.use(cors({
@@ -68,6 +70,36 @@ app.get("/productList", async(req, res)=>{
     }
 });
 
+/////////////STRIPE PAYEMENT INTEGRETION////////////
+
+const myDomain = "http://localhost:3000"
+
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    ui_mode: 'embedded',
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, price_1234) of the product you want to sell
+        price: 'price_1ReRq6R0RcCSBOPSFARISwwW',
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    return_url: `${myDomain}/return?session_id={CHECKOUT_SESSION_ID}`,
+  });
+
+  res.send({clientSecret: session.client_secret});
+});
+
+
+app.get('/session-status', async (req, res) => {
+  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+
+  res.send({
+    status: session.status,
+    customer_email: session.customer_details.email
+  });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

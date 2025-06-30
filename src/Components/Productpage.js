@@ -6,11 +6,14 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import LoadingSreen from "./LoadingScreen";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Productpage({products, loading}){
 
     
     const [search, setSearch] = useState("");
+    // const [newRequest, setNewRequest] = useState([])
     
 
     function proof(){
@@ -31,13 +34,22 @@ function Productpage({products, loading}){
       
         localStorage.setItem("cart", JSON.stringify(cart));
         navigate("/")
+        toast.success(`Successfully added to your cart`,{
+          position: "top-left",
+          autoClose: 2000
+          
+        })
       };
 
+    
+
+    
 
     return(
         <>
         <Navbar cart = { cart.length}/>
         <h2>All Products</h2>
+        <ToastContainer/>
 
    <div className="quantity">
   <input type="text"
