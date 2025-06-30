@@ -518,6 +518,7 @@ label {
 
 
 .detailsButton {
+  margin-left: 70%;
   padding: 0.6em 2em;
   border: none;
   outline: none;
@@ -603,7 +604,9 @@ label {
   margin: 10px;
 }
 .displayDetailsPrice{
-  margin-bottom: 150px;
+ text-align: center;
+  margin-bottom: 60px;
+  margin-right: 500%;
   width: 50%;
   margin-left: 20%;
   color: red;
@@ -633,12 +636,14 @@ label {
   text-align: center;
 }
 .detailsAddTocart{
-  margin: 5px;
+margin-bottom: 50px;
+margin-left: 10px;
   background-color: rgb(124, 124, 214);
   color: white;
 }
 .detailsShopNow{
   background-color: yellow;
+  margin-left: 10px;
   
 }
 .detailsAddTocart:hover{
@@ -651,7 +656,7 @@ label {
 }
 .ProductDetailsDescription{
   font-size: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 120px;
   margin-top: 20px;
 }
 
@@ -707,4 +712,8 @@ p {
   opacity: 0;
   transition: opacity 0.3s ease;
   white-space: nowrap;
+}
+.buttonContainer{
+  text-align: center;
+  
 }

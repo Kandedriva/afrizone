@@ -51,9 +51,11 @@ const EachProducts = ({singleProduct})=>{
    <img src={product.product_image} alt={product.product_name} className="productDetailImage"/> 
       <p className="ProductDetailsDescription">{product.product_description}</p>
       <p className="displayDetailsPrice">Price: ${product.product_price}</p>
+      <div className="buttonContainer">
       <button className="detailsButton detailsAddTocart" onClick={()=>addToCart(product)}>+ Add to Cart</button>
       <button className="detailsButton detailsShopNow" onClick={()=>checkout(product)}>Shop Now</button>
       
+      </div>
     </div>
      
 
