@@ -72,6 +72,7 @@ function Productpage({products, loading}){
     return search.toLowerCase() === "" ? product : product.product_name.toLowerCase().includes(search.toLowerCase())
         }).map((product)=>(
      <div key={product.id} className="productContainer"  >
+     <span className="tooltipText">Select name for more details.</span>
       <div>
       <div className="imageContainer1">
       <img alt={product.product_name} src={product.product_image} className="productImage"></img>

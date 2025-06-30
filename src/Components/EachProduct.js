@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const EachProducts = ({singleProduct})=>{
@@ -51,9 +51,9 @@ const EachProducts = ({singleProduct})=>{
    const product = singleProduct.find(p =>p.id === parseInt(id));
     if(!product) return(<p>Product no fund..!</p>)
     return<>
-  {/* <ToastContainer className="toast"/> */}
+
     <Navbar cart = { cart.length}/>
-    
+     
     <a className="fontstyle" href="/" ><i className="fa-solid fa-backward-fast"></i> Keep Shopping</a>
     <div className="detailsContainer">
     <h2 className="ProductDetailName">{product.product_name}</h2>

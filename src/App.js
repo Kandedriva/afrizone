@@ -9,7 +9,7 @@ import CheckoutForm from './Components/CheckoutForm';
 import Return from './Components/Return';
 // import Register from './Components/Register';
 // import Login from './Components/Login';
-import CheckOut from './Components/Checkout';
+// import CheckOut from './Components/Checkout';
 import EachProducts from './Components/EachProduct';
 
 

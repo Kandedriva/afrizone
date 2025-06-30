@@ -126,10 +126,8 @@ h3{
 }
 
 .productContainer {
+  position: relative;
   border-radius: 10px;
- 
-  /* position:static; */
-  /* box-shadow: 6px 5px gray; */
   display: inline-block;
   width:200px;
   height:320px;
@@ -139,11 +137,19 @@ h3{
   /* padding: 2px; */
 
 }
+.productContainer:hover {
+  border: 2px solid rgb(124, 124, 214);;
+  
+}
 
-.productContainer:hover{
+.productContainer:hover .tooltipText{
+  opacity: 1;
+  visibility: visible;
  border: 2px solid  rgb(124, 124, 214);
 
 }
+
+
 
 
 
@@ -461,7 +467,7 @@ label {
 }
 .ProcedToCheckOut{
   color: white;
-  background-color: #0e2ee4;
+  background-color: #1F75FE;
   border: 1px solid rgba(227, 193, 37, 0.796);
   cursor:pointer;
   width:100%;
@@ -470,8 +476,8 @@ label {
  font-size: 22px;
 }
 .ProcedToCheckOut:hover{
-  background-color: rgb(240, 240, 7);
-  color: black;
+  background-color: #04398e;
+
 
 
 }
@@ -685,4 +691,20 @@ p {
 }
 #checkout {
   width: 100vw;
+}
+.tooltipText{
+  visibility: hidden;
+  background-color: #1F75FE;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 10;
+  bottom: 100%; /* Position above the element */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
