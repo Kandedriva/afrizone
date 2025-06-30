@@ -7,9 +7,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import CheckoutForm from './Components/CheckoutForm';
 import Return from './Components/Return';
-// import Register from './Components/Register';
-// import Login from './Components/Login';
-// import CheckOut from './Components/Checkout';
 import EachProducts from './Components/EachProduct';
 
 
@@ -24,7 +21,6 @@ function App() {
      setLoading(false)
      })
     .catch(error=>{
-     // setIsloading(false)
      console.log(error)
     })
  }, []);
@@ -32,10 +28,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Productpage loading={loading} products={products}/>} />
-      {/* <Route path="/registration" element={<Register />} />
-      <Route path="/login" element={<Login />} /> */}
       <Route path="/cart" element={<Carts />} />
-      {/* <Route path="/checkout" element={<CheckOut />} /> */}
       <Route path="/checkout" element={<CheckoutForm />} />
           <Route path="/return" element={<Return />} />
       <Route path="/product/:id" element={<EachProducts singleProduct={products} />} />
