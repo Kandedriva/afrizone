@@ -72,7 +72,7 @@ app.get("/productList", async(req, res)=>{
 
 /////////////STRIPE PAYEMENT INTEGRETION////////////
 
-const myDomain = "http://localhost:3000"
+const myDomain = "cerulean-pika-4b4fd6.netlify.app"
 
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
