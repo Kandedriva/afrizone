@@ -9,8 +9,9 @@ import  path  from "path";
 import { fileURLToPath } from 'url';
 import Stripe from "stripe";
 
-const { Pool } = pkg;
 
+////////////////CONNECTION OF THE SERVER AND THE OTHER ELEMENT.//////////
+const { Pool } = pkg;
 env.config();
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,12 +21,6 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '../public')));
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-
-// app.use(cors({
-
-//     origin: "https://cerulean-pika-4b4fd6.netlify.app",
-//     credentials: true,
-// }));
 app.use(cors({
     origin: function (origin, callback) {
       const allowedOrigins = [
@@ -41,8 +36,8 @@ app.use(cors({
     credentials: true
   }));
  
+  ///////////DATABASE CONFIGURATION.///////
 const PORT = process.env.PORT || 5001;
-
 const {PGHOST, PGDATABASE, PGUSER, PGPASSWORD} = process.env;
 
 const pool = new Pool({
@@ -56,8 +51,8 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 });
-// const router = express.Router();
 
+/////////////////GET PRODUCTS FROM THE PRODUCT TABLE IN THE DATABASE
 app.get("/productList", async(req, res)=>{
     const client = await pool.connect();
 
@@ -72,34 +67,35 @@ app.get("/productList", async(req, res)=>{
 
 /////////////STRIPE PAYEMENT INTEGRETION////////////
 
-const myDomain = "cerulean-pika-4b4fd6.netlify.app"
+app.post('/create-checkout-session', async(req, res)=>{
+  const {cartItem} = req.body;
 
-app.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    ui_mode: 'embedded',
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, price_1234) of the product you want to sell
-        price: 'price_1ReRq6R0RcCSBOPSFARISwwW',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    return_url: `${myDomain}/return?session_id={CHECKOUT_SESSION_ID}`,
-  });
-
-  res.send({clientSecret: session.client_secret});
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: cartItem.map(item=>({
+        price_data: {
+          currency:'usd',
+          product_data:{
+            name: item.name,
+            images: [item.image],
+          },
+          unit_amount: item.price * 100
+        },
+        quantity: item.quantity,
+      })),
+      success_url: 'https://cerulean-pika-4b4fd6.netlify.app/success',
+      cancel_url: 'https://cerulean-pika-4b4fd6.netlify.app/cancel',
+    })
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
 });
 
 
-app.get('/session-status', async (req, res) => {
-  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-
-  res.send({
-    status: session.status,
-    customer_email: session.customer_details.email
-  });
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

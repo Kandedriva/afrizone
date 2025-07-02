@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react"; 
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Cart = () => {
   
   const [cart, setCart] = useState([]);
-  // const [quantityupdate, setQuantityUpdate] = useState(cart)
-  const navigate = useNavigate()
-
-  // function goToProduct(){
-  //       navigate("/")
-  //      }
-
+  
+///////GET THE CART CONTAINER FROM THE LOCAL STORAGE.///////
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
   }, []);
 
+  //////REMOVE AN ITEM FROM THE CART.////
   const removeItem = (index) => {
     const updatedCart = cart.filter((_, i) => i !== index);
     setCart(updatedCart);
@@ -23,8 +19,24 @@ const Cart = () => {
   };
 
   const totalAmount = cart.reduce((sum, item)=>sum + (item.product_price * item.quantity), 0)
-  function goToCheckOut(){
-    navigate("/checkout")
+
+  ////////POST REQUEST TO SEND THE CART CONTAINER TO THE BACKEND./////////////
+  const  goToCheckOut = async()=>{
+    try {
+      const response = await axios.post("http://https://afrizone-1.onrender.com/create-checkout-session",{
+         cartItem: cart.map(item =>({
+          name: item.product_name,
+          image: item.product_image.startsWith('http')
+            ? item.product_image
+            : `https://cerulean-pika-4b4fd6.netlify.app${item.product_image.startsWith('/') ? '' : '/'}${item.product_image}`,
+          price: item.product_price,
+          quantity: item.quantity,
+        })) 
+      })
+      window.location.href = response.data.url;
+    } catch (error) {
+      console.error(`Checkout error ${error}`)
+    }
 }
 console.log(cart)
 
@@ -59,3 +71,6 @@ console.log(cart)
 };
 
 export default Cart;
+
+
+
