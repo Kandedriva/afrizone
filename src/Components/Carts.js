@@ -23,7 +23,7 @@ const Cart = () => {
   ////////POST REQUEST TO SEND THE CART CONTAINER TO THE BACKEND./////////////
   const  goToCheckOut = async()=>{
     try {
-      const response = await axios.post("http://https://afrizone-1.onrender.com/create-checkout-session",{
+      const response = await axios.post("https://afrizone-1.onrender.com/create-checkout-session",{
          cartItem: cart.map(item =>({
           name: item.product_name,
           image: item.product_image.startsWith('http')
